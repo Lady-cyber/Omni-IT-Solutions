@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OMNI IT Solutions provides innovative technology and HR-focused digital solutions to help businesses work smarter.">
+  <title>OMNI IT Solutions | Smarter Technology. Better Business.</title>
+
+  <style>
+    :root {
+      --navy: #102b46;
+      --blue: #1676bd;
+      --light-blue: #eaf4fb;
+      --silver: #aebbc7;
+      --grey: #596777;
+      --white: #ffffff;
+      --light: #f5f8fb;
+      --dark: #172536;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      line-height: 1.7;
+      background: var(--white);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(16, 43, 70, 0.08);
+    }
+
+    .navbar {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+    }
+
+    .brand img {
+      width: 170px;
+      max-height: 65px;
+      object-fit: contain;
+    }
+
+    .brand-fallback {
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
+    .brand-fallback small {
+      display: block;
+      font-size: .65rem;
+      letter-spacing: 4px;
+      color: var(--blue);
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    .nav-cta, .button {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      padding: 12px 23px;
+      border-radius: 5px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .nav-cta:hover, .button:hover {
+      background: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      font-size: 1.8rem;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, rgba(16,43,70,.98), rgba(22,118,189,.91));
+      color: var(--white);
+      padding: 110px 0 115px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: 50%;
+      right: -100px;
+      top: -120px;
+      box-shadow: 0 0 0 45px rgba(255,255,255,.035),
+                  0 0 0 90px rgba(255,255,255,.025);
+    }
+
+    .hero-content {
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #c9e7ff;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      max-width: 620px;
+      color: #e5f1fa;
+      margin-bottom: 32px;
+    }
+
+    .button-light {
+      background: var(--white);
+      color: var(--navy);
+      margin-left: 10px;
+    }
+
+    .button-light:hover {
+      background: var(--light-blue);
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading.center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-label {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .78rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p, .body-copy {
+      color: var(--grey);
+      font-size: 1.03rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .about-panel {
+      background: var(--light-blue);
+      border-left: 5px solid var(--blue);
+      padding: 35px;
+      border-radius: 7px;
+    }
+
+    .about-panel h3 {
+      color: var(--navy);
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .solutions {
+      background: var(--light);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 28px 23px;
+      border-radius: 8px;
+      border: 1px solid #e4ebf1;
+      box-shadow: 0 8px 25px rgba(16,43,70,.045);
+      transition: .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(16,43,70,.1);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      background: var(--light-blue);
+      color: var(--blue);
+      font-size: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      color: var(--navy);
+      font-size: 1.12rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--grey);
+      font-size: .93rem;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .why-item {
+      border-top: 3px solid var(--blue);
+      padding-top: 20px;
+    }
+
+    .why-item h3 {
+      color: var(--navy);
+      margin-bottom: 9px;
+    }
+
+    .why-item p {
+      color: var(--grey);
+    }
+
+    .purpose {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+    }
+
+    .purpose h2, .purpose h3 {
+      color: var(--white);
+    }
+
+    .purpose h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .purpose p {
+      color: #d7e5f0;
+    }
+
+    .purpose .section-label {
+      color: #8dccff;
+    }
+
+    .contact {
+      background: var(--light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .contact-details {
+      color: var(--grey);
+      margin-top: 20px;
+    }
+
+    .contact-details p {
+      margin: 12px 0;
+    }
+
+    form {
+      background: var(--white);
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 8px 25px rgba(16,43,70,.06);
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 14px 0 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd6df;
+      border-radius: 5px;
+      font: inherit;
+      background: white;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    form button {
+      border: 0;
+      cursor: pointer;
+      margin-top: 18px;
+      font-size: 1rem;
+    }
+
+    .form-note {
+      color: var(--grey);
+      font-size: .82rem;
+      margin-top: 12px;
+    }
+
+    footer {
+      background: #0b2035;
+      color: #d7e5f0;
+      padding: 28px 0;
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        min-height: 72px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 22px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 8px 15px rgba(0,0,0,.08);
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .hero {
+        padding: 78px 0;
+      }
+
+      .button-light {
+        margin: 12px 0 0;
+      }
+
+      .about-grid, .purpose-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .cards, .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a class="brand" href="#home" aria-label="OMNI IT Solutions home">
+        <img src="assets/omni-logo.png" alt="OMNI IT Solutions logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="brand-fallback" style="display:none;">
+          OMNI <small>IT SOLUTIONS</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle"
+              aria-label="Open navigation menu" aria-expanded="false">☰</button>
+
+      <nav id="navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#why-omni">Why OMNI</a>
+        <a href="#contact" class="nav-cta">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Technology • Innovation • People</div>
+          <h1>Smarter Technology.<br>Better Business.</h1>
+          <p>
+            Empowering businesses through intelligent technology,
+            innovative software solutions and smarter people management.
+          </p>
+          <a href="#solutions" class="button">Explore Our Solutions</a>
+          <a href="#contact" class="button button-light">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">Who We Are</div>
+          <h2>Technology that moves your business forward.</h2>
+          <p class="body-copy">
+            OMNI IT Solutions is a South African technology company focused
+            on developing practical, innovative digital solutions for modern
+            businesses. We bring technology and people-focused thinking
+            together to help organisations improve the way they operate.
+          </p>
+          <br>
+          <p class="body-copy">
+            Our approach is centred on understanding business challenges
+            and exploring smarter ways to solve them through software,
+            automation and digital innovation.
+          </p>
+        </div>
+
+        <div class="about-panel">
+          <h3>Our Approach</h3>
+          <p>
+            We believe technology should simplify work, support better
+            decisions and create opportunities for sustainable business
+            growth. Our focus is on solutions that are practical,
+            adaptable and designed around real organisational needs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="solutions" id="solutions">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="section-label">What We Do</div>
+          <h2>Our Solutions</h2>
+          <p>
+            Exploring smarter digital tools to support recruitment,
+            workforce management and organisational performance.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">✦</div>
+            <h3>AI Recruitment Solutions</h3>
+            <p>
+              Exploring AI-enabled recruitment tools to support candidate
+              sourcing, screening and more efficient hiring processes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">◷</div>
+            <h3>Time & Attendance</h3>
+            <p>
+              Digital workforce management concepts designed to help
+              organisations monitor attendance, working hours and
+              workforce information.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">↗</div>
+            <h3>Performance Management</h3>
+            <p>
+              Technology concepts to support performance tracking,
+              employee development, goal setting and organisational
+              productivity.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">◎</div>
+            <h3>Employee Relations</h3>
+            <p>
+              Digital solutions intended to help streamline employee
+              relations processes, documentation and HR administration.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-omni">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="section-label">The OMNI Difference</div>
+          <h2>Why Choose OMNI?</h2>
+          <p>
+            We believe the best technology starts with understanding
+            people, processes and business needs.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-item">
+            <h3>Innovation with Purpose</h3>
+            <p>
+              We explore technology that addresses meaningful business
+              challenges and creates practical value.
+            </p>
+          </div>
+
+          <div class="why-item">
+            <h3>People-Focused Thinking</h3>
+            <p>
+              We recognise that successful organisations need technology
+              that works for the people who use it.
+            </p>
+          </div>
+
+          <div class="why-item">
+            <h3>Smarter Business Processes</h3>
+            <p>
+              We aim to help businesses simplify workflows, improve
+              efficiency and embrace digital opportunities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="purpose">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">Our Purpose</div>
+          <h2>Building a smarter digital future.</h2>
+        </div>
+
+        <div class="purpose-grid">
+          <div>
+            <h3>Our Mission</h3>
+            <p>
+              To develop innovative, accessible and practical technology
+              solutions that help businesses improve operations,
+              strengthen workforce management and embrace digital
+              transformation.
+            </p>
+          </div>
+
+          <div>
+            <h3>Our Vision</h3>
+            <p>
+              To become a trusted technology partner recognised for
+              meaningful innovation, intelligent software solutions
+              and a commitment to helping businesses grow.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-label">Get In Touch</div>
+          <h2>Let's build something smarter together.</h2>
+          <p class="body-copy">
+            Interested in learning more about OMNI IT Solutions or
+            discussing a potential project? We'd love to hear from you.
+          </p>
+
+          <div class="contact-details">
+            <p><strong>Company:</strong> OMNI IT Solutions (Pty) Ltd</p>
+            <p><strong>Location:</strong> South Africa</p>
+            <p><strong>Enquiries:</strong> Use the contact form to get in touch.</p>
+          </div>
+        </div>
+
+        <form id="contactForm">
+          <h3 style="color: var(--navy);">Send an Enquiry</h3>
+
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" required>
+
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" required>
+
+          <label for="interest">What are you interested in?</label>
+          <select id="interest" name="interest" required>
+            <option value="">Please select</option>
+            <option>AI Recruitment Solutions</option>
+            <option>Time & Attendance</option>
+            <option>Performance Management</option>
+            <option>Employee Relations</option>
+            <option>General Enquiry</option>
+          </select>
+
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit" class="button">Submit Enquiry</button>
+
+          <p class="form-note">
+            Demonstration form: submissions are not yet sent or stored.
+            A secure form service or company email connection must be
+            configured before the website goes live for enquiries.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>OMNI IT Solutions (Pty) Ltd</strong></p>
+      <p>Smarter Technology. Better Business.</p>
+      <p>&copy; <span id="year"></span> OMNI IT Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navigation = document.getElementById("navigation");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    navigation.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+      alert("Thank you for your interest in OMNI IT Solutions. This is a demonstration form and is not yet connected to an email or submission service.");
+    });
+  </script>
+
+</body>
+</html>
+
