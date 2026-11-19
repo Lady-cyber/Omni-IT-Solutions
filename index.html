@@ -465,7 +465,91 @@
         padding: 65px 0;
       }
     }
-  </style>
+  
+.pricing {
+  background: #f5f8fb;
+}
+
+.pricing-calculator {
+  max-width: 700px;
+  margin: auto;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(16,43,70,.08);
+}
+
+.pricing-calculator h3 {
+  color: #102b46;
+  margin: 25px 0 15px;
+}
+
+.pricing-calculator > label:first-child {
+  display: block;
+  color: #102b46;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.pricing-calculator input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd6df;
+  border-radius: 5px;
+}
+
+.module-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 10px;
+  border-bottom: 1px solid #e5ebf0;
+  cursor: pointer;
+  color: #596777;
+}
+
+.module-option input {
+  width: 19px;
+  height: 19px;
+  accent-color: #1676bd;
+  flex-shrink: 0;
+}
+
+.module-option strong {
+  color: #102b46;
+}
+
+.price-summary {
+  background: #eaf4fb;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 7px;
+  color: #102b46;
+}
+
+.price-summary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.price-summary h2 {
+  color: #1676bd;
+  font-size: 2.3rem;
+  margin: 8px 0;
+}
+
+.price-summary small {
+  display: block;
+  color: #596777;
+  margin-top: 12px;
+}
+
+.pricing-calculator .button {
+  text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -487,6 +571,7 @@
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
         <a href="#solutions">Solutions</a>
+        <a href="#pricing">Pricing</a>
         <a href="#why-omni">Why OMNI</a>
         <a href="#contact" class="nav-cta">Contact Us</a>
       </nav>
@@ -774,6 +859,49 @@
       <p>&copy; <span id="year"></span> OMNI IT Solutions. All rights reserved.</p>
     </div>
   </footer>
+
+const employeeInput = document.getElementById("employees");
+const moduleInputs = document.querySelectorAll(".module");
+
+function calculateOMNIPrice() {
+  const employees = Math.max(1, Number(employeeInput.value) || 1);
+  let subtotal = 0;
+  let selectedCount = 0;
+
+  moduleInputs.forEach(module => {
+    if (!module.checked) return;
+
+    selectedCount++;
+
+    const rate = Number(module.value);
+
+    let price = module.dataset.perEmployee === "true"
+      ? Math.max(rate * employees, Number(module.dataset.minimum))
+      : rate;
+
+    subtotal += price;
+  });
+
+  const discount = selectedCount === 4 ? subtotal * 0.15 : 0;
+  const total = subtotal - discount;
+
+  const money = amount => "R" + amount.toLocaleString("en-ZA", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  document.getElementById("subtotal").textContent = money(subtotal);
+  document.getElementById("discount").textContent = money(discount);
+  document.getElementById("total").textContent = money(total);
+}
+
+employeeInput.addEventListener("input", calculateOMNIPrice);
+
+moduleInputs.forEach(module => {
+  module.addEventListener("change", calculateOMNIPrice);
+});
+
+calculateOMNIPrice();
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
